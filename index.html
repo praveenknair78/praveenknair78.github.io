@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        .project-card {
+            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+        }
+
+        .project-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 6px 10px -2px rgba(0, 0, 0, 0.15);
+        }
+
+        .detail-link {
+            transition: color 0.3s ease;
+        }
+
+        .detail-link:hover {
+            color: #2563eb;
+        }
+
+        /* Sidebar Styles */
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100vh;
+            width: 250px;
+            /* Increased width of the sidebar */
+            background-color: #f3f4f6;
+            /* Tailwind's gray-100 */
+            border-r: 1px solid #e5e7eb;
+            /* Tailwind's border-gray-200 */
+            padding-top: 80px;
+            /* Adjusted padding to account for fixed header */
+            transition: transform 0.3s ease-in-out;
+            z-index: 10;
+            overflow-y: auto;
+            /* Added scrollbar for long project lists */
+        }
+
+        .sidebar.hidden {
+            transform: translateX(-100%);
+        }
+
+        .sidebar-header {
+            padding: 24px;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .sidebar-menu {
+            padding: 16px;
+        }
+
+        .sidebar-menu li {
+            margin-bottom: 12px;
+        }
+
+        .sidebar-menu a {
+            color: #4b5563;
+            /* Tailwind's text-gray-600 */
+            text-decoration: none;
+            font-weight: 500;
+            /* Tailwind's font-medium */
+            transition: color 0.3s ease;
+            display: block;
+            /* Make the whole li clickable */
+            padding: 8px;
+            border-radius: 6px;
+            /* Rounded corners for links */
+        }
+
+        .sidebar-menu a:hover {
+            color: #2563eb;
+            /* Tailwind's text-blue-600 on hover */
+            background-color: #edf2f7;
+            /* Tailwind's bg-gray-200 on hover */
+        }
+
+        .sidebar-menu a.active {
+            color: #fff;
+            background-color: #2563eb;
+            font-weight: 600;
+        }
+
+        /* Mobile menu button */
+        #mobile-menu-button {
+            position: fixed;
+            /* Fix button to top */
+            top: 20px;
+            left: 20px;
+            z-index: 20;
+            /* Ensure button is above the sidebar */
+            cursor: pointer;
+            display: none;
+            /* Hide on desktop */
+        }
+
+        @media (max-width: 768px) {
+
+            /* Medium screens and below (md breakpoint in Tailwind is 768px) */
+            .sidebar {
+                transform: translateX(-100%);
+                /* Start offscreen on mobile */
+                transition: transform 0.3s ease-in-out;
+                height: 100vh;
+            }
+
+            .sidebar.hidden {
+                transform: translateX(-100%);
+            }
+
+            .sidebar.show {
+                transform: translateX(0);
+                /* Bring sidebar in on mobile */
+            }
+
+            #mobile-menu-button {
+                display: block;
+                /* Show button on mobile */
+            }
+
+            body {
+                padding-left: 0;
+                /* Remove left padding on mobile */
+            }
+
+            .main-content {
+                margin-left: 0;
+                /* Adjust main content margin on mobile */
+            }
+        }
+
+        .main-content {
+            margin-left: 250px;
+            /* Leave space for the sidebar */
+            transition: margin-left 0.3s ease-in-out;
+        }
+
+        .main-content.no-sidebar {
+            margin-left: 0;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-100">
+    <header
+        class="bg-gradient-to-r from-blue-600 to-indigo-600 text-white py-6 shadow-md fixed top-0 left-0 w-full z-10">
+        <div class="container mx-auto px-4 flex justify-center md:justify-start items-center">
+            <button id="mobile-menu-button" class="md:hidden text-white focus:outline-none" aria-label="Toggle Menu">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                    stroke="currentColor" class="w-6 h-6">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                </svg>
+            </button>
+            <h1 class="text-3xl font-semibold text-center md:text-left">Praveen Melevila Krishnan Nair</h1>
+            <p class="text-lg text-gray-200 text-center md:text-left ml-0 md:ml-4">(Gen) AI Engineer | ML Engineer |
+                Data Scientist | Data Engineer | Data Analyst | Legacy Technologies (Mainframe) Specialist</p>
+        </div>
+        <div class="text-center md:text-right">
+            <p class="text-sm md:text-base">📧 <a href="mailto:praveen.mknair@gmail.com"
+                    class="underline hover:text-blue-200">praveen.mknair@gmail.com</a></p>
+            <p class="text-sm md:text-base">🔗 <a href="https://linkedin.com/in/praveen-nair-89675278"
+                    class="underline hover:text-blue-200" target="_blank">LinkedIn</a></p>
+        </div>
+    </header>
+
+    <div class="sidebar hidden" id="sidebar">
+        <div class="sidebar-header">
+            <h2 class="text-xl font-semibold text-gray-800">Projects</h2>
+        </div>
+        <ul class="sidebar-menu" id="project-sidebar-menu">
+        </ul>
+    </div>
+
+    <main class="main-content container mx-auto px-4 py-10" id="main-content">
+        <section id="about" class="mb-12">
+            <h2 class="text-3xl font-semibold text-gray-800 mb-6 text-center md:text-left">About Me</h2>
+            <p class="text-gray-700 leading-relaxed text-lg">
+                <br><br><br>
+                Innovative software engineer with over 20 years of experience in enterprise systems, recently
+                transitioned into Machine Learning and Generative AI engineering. Strong foundation in data engineering,
+                model development, and LLM integration. Adept at leveraging cloud platforms (Azure/GCP), Python-based ML
+                frameworks, and GenAI toolkits (LangChain, OpenAI API, Hugging Face, LangGraph, Crew AI) to build
+                intelligent, scalable applications and agentic apps. Passionate about solving real-world problems with
+                AI and continuous learning.
+            </p>
+        </section>
+
+        <section id="skills" class="mb-12">
+            <h2 class="text-3xl font-semibold text-gray-800 mb-6 text-center md:text-left">Skills</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow duration-300 ß">
+                    <h3 class="text-xl font-semibold text-blue-600 mb-3">Machine Learning/Deep Learning</h3>
+                    <ul class="list-disc list-inside text-gray-700">
+                        <li>Python (Pandas, Numpy, Scikit-learn, TensorFlow)</li>
+                        <li>Model Development/Hyperparameter tuning</li>
+                        <li>Supervised and Unsupervised Learning</li>
+                        <li>Regression, Classification, Clustering, PCA </li>
+                        <li>Linear/Logistic Regression, Decision Trees </li>
+                        <li>Random Forest, XGBoost, LiteGBM, KNN etc </li>
+                        <li>Deep Learning (ANN/CNN/RNN) </li>
+                        <li>Computer Vision, Natural Language Processing (NLP)</li>
+                        <li>Spacy, NLTK, BoW, TF-IDF, Word2Vec, Glove</li>
+                    </ul>
+                </div>
+                <div class="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow duration-300">
+                    <h3 class="text-xl font-semibold text-blue-600 mb-3">Gen AI</h3>
+                    <ul class="list-disc list-inside text-gray-700">
+                        <li>LLM Apps development - LangChain,Huggingface</li>
+                        <li>Prompt Engineering</li>
+                        <li>Building RAG applications - LangChain and LlamaIndex </li>
+                        <li>Vector Databases - Pinecone, FAISS, ChromaDB.</li>
+                        <li>Agentic AI Frameworks - OpenAI, LangGraph, Crew AI</li>
+                    </ul>
+                </div>
+                <div class="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow duration-300">
+                    <h3 class="text-xl font-semibold text-blue-600 mb-3">Data Science/Data Analysis</h3>
+                    <ul class="list-disc list-inside text-gray-700">
+                        <li>Statistical Analysis</li>
+                        <li> Hypothesis testing</li>
+                        <li>Data Cleaning & Preprocessing</li>
+                        <li>Exploratory Data Analysis (EDA)</li>
+                        <li>Data Visualization (Matplotlib, Seaborn, Plotly)</li>
+                        <li>Reporting</li>
+                        <li>Data Storytelling</li>
+                    </ul>
+                </div>
+                <div class="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow duration-300">
+                    <h3 class="text-xl font-semibold text-blue-600 mb-3">Data Engineering</h3>
+                    <ul class="list-disc list-inside text-gray-700">
+                        <li>SQL, Pyhton programming, Spark SQL, Pyspark</li>
+                        <li>ETL Processes (Databricks, Apache Spark, Airflow)</li>
+                        <li>Cloud Computing (Azure, GCP)</li>
+                        <li>Data Warehousing - BigQuery, Azure data factory</li>
+                    </ul>
+                </div>
+                <div class="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow duration-300">
+                    <h3 class="text-xl font-semibold text-blue-600 mb-3">Legacy technologies</h3>
+                    <ul class="list-disc list-inside text-gray-700">
+                        <li>IBM Mainframe - JCL and utilities</li>
+                        <li>COBOL</li>
+                        <li>DB2</li>
+                        <li>Control-M, SAS</li>
+
+                    </ul>
+                </div>
+                <div class="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow duration-300">
+                    <h3 class="text-xl font-semibold text-blue-600 mb-3">Tools & Technologies</h3>
+                    <ul class="list-disc list-inside text-gray-700">
+                        <li>Docker</li>
+                        <li>Git</li>
+                        <li>Linux shell scripts</li>
+                        <li>Jira</li>
+                        <li>Postman</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        <section id="certifications" class="mb-12">
+            <h2 class="text-3xl font-semibold text-gray-800 mb-6 text-center md:text-left">Certifications</h2>
+            <div class="bg-white rounded-lg shadow-md p-6">
+                <ul class="list-disc list-inside text-gray-700 text-md space-y-2">
+                    <li>Google Certified Gen AI Leader</li>
+                    <li>Microsoft Certified: Azure Data Engineeer Associate</li>
+                    <li>Microsoft Certified: Azuer Fundamentals/li>
+                    <li>PCAP - Python Certified Associate Programmer</li>
+                    <li>CTFL(ISTQB) - Certified Tester Foundation level</li>
+                    <li>ITIL V3 - Foundation Level</li>
+                </ul>
+            </div>
+        </section>
+        <section id="projects" class="mb-12">
+            <h2 class="text-3xl font-semibold text-gray-800 mb-6 text-center md:text-left">Projects</h2>
+            <p class="mt-6 text-left text-blue-700 text-lg">
+                All my ML projects are listed here ->:
+                <a href="https://www.mygreatlearning.com/eportfolio/praveen-nair2" target="_blank" class="underline hover:text-blue-900">
+                    ML E-Portfolio
+                </a>
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8" id="project-cards-container">
+                <div class="project-card bg-white rounded-lg shadow-md p-6">
+                    <h3 class="text-2xl font-semibold text-blue-700 mb-3">Customer Churn Prediction</h3>
+                    <p class="text-gray-700 mb-4">Developed a machine learning model to predict customer churn for a
+                        subscription-based service. Utilized Python, Scikit-learn, and advanced classification
+                        techniques to identify key factors influencing churn and improve retention strategies.</p>
+                    <ul class="list-disc list-inside text-gray-600 mb-4">
+                        <li>Technologies Used: Python, Scikit-learn, Pandas, Matplotlib</li>
+                        <li>Key Contributions: Model development, feature engineering, performance optimization</li>
+                    </ul>
+                    <a href="#project1-details" class="text-blue-500 hover:underline detail-link">View Details</a>
+                </div>
+                <div class="project-card bg-white rounded-lg shadow-md p-6">
+                    <h3 class="text-2xl font-semibold text-blue-700 mb-3">E-commerce Sales Analysis</h3>
+                    <p class="text-gray-700 mb-4">Designed and implemented a data pipeline to process and analyze
+                        e-commerce sales data. Leveraged Apache Spark and cloud-based data warehousing solutions to
+                        extract insights, optimize sales strategies, and improve business decision-making.</p>
+                    <ul class="list-disc list-inside text-gray-600 mb-4">
+                        <li>Technologies Used: Apache Spark, SQL, AWS, BigQuery</li>
+                        <li>Key Contributions: ETL pipeline development, data warehousing, performance tuning</li>
+                    </ul>
+                    <a href="#project2-details" class="text-blue-500 hover:underline detail-link">View Details</a>
+                </div>
+            </div>
+            <div class="mt-8 text-center">
+                <a href="#"
+                    class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-full transition-colors duration-300">See
+                    More Projects</a>
+            </div>
+        </section>
+
+        <section id="contact" class="mb-12">
+            <h2 class="text-3xl font-semibold text-gray-800 mb-6 text-center md:text-left">Contact Me</h2>
+            <p class="text-gray-700 mb-4 text-lg">
+                Feel free to reach out to me via email or connect with me on social media. I'm always open to discussing
+                new opportunities and collaborations.
+            </p>
+            <div class="flex flex-col sm:flex-row items-start sm:items-center gap-4">
+                <p class="text-gray-700 text-lg">
+                    Email: <a href="mailto:your.email@example.com"
+                        class="text-blue-500 hover:underline text-lg">your.email@example.com</a>
+                </p>
+                <p class="text-gray-700 text-lg">
+                    LinkedIn: <a href="https://www.linkedin.com/in/yourprofile"
+                        class="text-blue-500 hover:underline text-lg">linkedin.com/in/yourprofile</a>
+                </p>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-gray-200 text-gray-700 py-6">
+        <div class="container mx-auto px-4 text-center">
+            &copy; 2025 My Portfolio. All rights reserved.
+        </div>
+    </footer>
+
+    <script>
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // JavaScript to dynamically add project links to the sidebar
+        const projectsSection = document.getElementById('projects');
+        const projectCardsContainer = document.getElementById('project-cards-container'); // Correct ID
+        const projectSidebarMenu = document.getElementById('project-sidebar-menu');
+
+        if (projectsSection && projectCardsContainer && projectSidebarMenu) {
+            const projectCards = projectCardsContainer.querySelectorAll('.project-card');
+            const projectLinks = [];
+
+            projectCards.forEach((card, index) => {
+                const projectId = `project${index + 1}`;
+                const projectTitle = card.querySelector('h3').textContent;
+                const projectLink = document.createElement('a');
+                projectLink.href = `#${projectId}`;
+                projectLink.textContent = projectTitle;
+                projectLinks.push(projectLink);
+
+                // Add an ID to each project card for smooth scrolling
+                card.id = projectId;
+            });
+
+            // Append the links to the sidebar menu
+            projectLinks.forEach(link => {
+                const listItem = document.createElement('li');
+                listItem.appendChild(link);
+                projectSidebarMenu.appendChild(listItem);
+            });
+        }
+
+        // Mobile menu toggle functionality
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const sidebar = document.getElementById('sidebar');
+        const mainContent = document.getElementById('main-content');
+
+        if (mobileMenuButton && sidebar && mainContent) {
+            mobileMenuButton.addEventListener('click', () => {
+                sidebar.classList.toggle('hidden');
+                sidebar.classList.toggle('show');
+                mainContent.classList.toggle('no-sidebar');
+            });
+        }
+
+        // Add this script to handle adding the 'active' class to the sidebar links
+        document.addEventListener('DOMContentLoaded', () => {
+            const sidebarLinks = document.querySelectorAll('.sidebar-menu a');
+            const sections = document.querySelectorAll('section'); // Get all sections you want to link to
+
+            function updateActiveNavLink() {
+                let currentSectionId = '';
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    const sectionHeight = section.clientHeight;
+                    if (window.scrollY >= sectionTop - 100 && window.scrollY < sectionTop + sectionHeight - 100) {
+                        currentSectionId = section.getAttribute('id');
+                    }
+                });
+
+                sidebarLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href').slice(1) === currentSectionId) {
+                        link.classList.add('active');
+                    }
+                });
+            }
+
+            window.addEventListener('scroll', updateActiveNavLink);
+        });
+
+    </script>
+</body>
+
+</html>
