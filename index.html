@@ -276,7 +276,7 @@
                 <ul class="list-disc list-inside text-gray-700 text-md space-y-2">
                     <li>Google Certified Gen AI Leader</li>
                     <li>Microsoft Certified: Azure Data Engineeer Associate</li>
-                    <li>Microsoft Certified: Azuer Fundamentals/li>
+                    <li>Microsoft Certified: Azuer Fundamentals</li>
                     <li>PCAP - Python Certified Associate Programmer</li>
                     <li>CTFL(ISTQB) - Certified Tester Foundation level</li>
                     <li>ITIL V3 - Foundation Level</li>
@@ -290,30 +290,80 @@
                 <a href="https://www.mygreatlearning.com/eportfolio/praveen-nair2" target="_blank" class="underline hover:text-blue-900">
                     ML E-Portfolio
                 </a>
+                <br>
+                <a href="https://github.com/praveenknair78/Machine_Learning_Projects" target="_blank" class="underline hover:text-blue-900">
+                    Github Repo 
+                </a>
             </p>
+            <br>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8" id="project-cards-container">
                 <div class="project-card bg-white rounded-lg shadow-md p-6">
-                    <h3 class="text-2xl font-semibold text-blue-700 mb-3">Customer Churn Prediction</h3>
-                    <p class="text-gray-700 mb-4">Developed a machine learning model to predict customer churn for a
-                        subscription-based service. Utilized Python, Scikit-learn, and advanced classification
-                        techniques to identify key factors influencing churn and improve retention strategies.</p>
+                    <h3 class="text-2xl font-semibold text-blue-700 mb-3">Loan Delinquent Predictor</h3>
+                    <p class="text-gray-700 mb-4">Developed a machine learning model to predict deliquent customer for a
+                        loan service. Utilized Python, Scikit-learn, and advanced classification
+                        techniques to identify key factors influencing churn and improve retention strategies. The final model was deployed
+                        as a pickle file and then served using a visual web interface using <i>Streamlit</i> and <i>Gradio</i></p>
                     <ul class="list-disc list-inside text-gray-600 mb-4">
                         <li>Technologies Used: Python, Scikit-learn, Pandas, Matplotlib</li>
                         <li>Key Contributions: Model development, feature engineering, performance optimization</li>
                     </ul>
-                    <a href="#project1-details" class="text-blue-500 hover:underline detail-link">View Details</a>
+                    <a href="https://github.com/praveenknair78/Machine_Learning_Projects" class="text-blue-500 hover:underline detail-link">Github repo</a>
                 </div>
                 <div class="project-card bg-white rounded-lg shadow-md p-6">
-                    <h3 class="text-2xl font-semibold text-blue-700 mb-3">E-commerce Sales Analysis</h3>
-                    <p class="text-gray-700 mb-4">Designed and implemented a data pipeline to process and analyze
-                        e-commerce sales data. Leveraged Apache Spark and cloud-based data warehousing solutions to
-                        extract insights, optimize sales strategies, and improve business decision-making.</p>
+                    <h3 class="text-2xl font-semibold text-blue-700 mb-3">AI- News Research/Analysis</h3>
+                    <p class="text-gray-700 mb-4"> This is an LLM application using RAG designed for user-friendly effortless information retrieval. 
+                        This is provided with a visual interface devloped in Streamlit where users will have options to enter multiple news URLs and 
+                        do Q&A, generate summary of the specific news artiicles.</p>
                     <ul class="list-disc list-inside text-gray-600 mb-4">
-                        <li>Technologies Used: Apache Spark, SQL, AWS, BigQuery</li>
-                        <li>Key Contributions: ETL pipeline development, data warehousing, performance tuning</li>
+                        <li>Technologies Used: LangChain LLM framework, Google Gemini Model: gemini-2.0-flash</li>
+                        <li>                   HuggingFace embeddings, FAISS Vector store</li>
                     </ul>
-                    <a href="#project2-details" class="text-blue-500 hover:underline detail-link">View Details</a>
+                     <a href="https://github.com/praveenknair78/AI_Projects/tree/main/News_research_project" class="text-blue-500 hover:underline detail-link">Github repo</a>
                 </div>
+                <div class="project-card bg-white rounded-lg shadow-md p-6">
+                    <h3 class="text-2xl font-semibold text-blue-700 mb-3">RAG - Research paper Chatbot (LangChain)</h3>
+                    <p class="text-gray-700 mb-4"> A RAG application with a UI chatbot answering user questions based on the research paper on transformers.
+                        The pdf documents have been embedded ans tored in a chroma databse and retrieved based on the user questions</p>
+                    <ul class="list-disc list-inside text-gray-600 mb-4">
+                        <li>Technologies Used: LangChain LLM framework, Google Gemini Model: gemini-2.0-flash</li>
+                        <li>                   HuggingFace embeddings, Chroma DB</li>
+                    </ul>
+                     <a href="https://github.com/praveenknair78/AI_Projects/tree/main/RAG_Research_paper_chatbot" class="text-blue-500 hover:underline detail-link">Github repo</a>
+                </div>
+                <div class="project-card bg-white rounded-lg shadow-md p-6">
+                    <h3 class="text-2xl font-semibold text-blue-700 mb-3">RAG - Research Chatbot (LlamaIndex)</h3>
+                    <p class="text-gray-700 mb-4"> Another RAG application with a UI chatbot answering user questions based on a product documentation.
+                        The pdf documents have been embedded and tored in a chroma databse and retrieved based on the user questions</p>
+                    <ul class="list-disc list-inside text-gray-600 mb-4">
+                        <li>Technologies Used: LlamaIndex framework, Groak Model: llama-3.3-70b-versatile</li>
+                        <li>                   HuggingFace embeddings, Chroma DB</li>
+                    </ul>
+                     <a href="https://github.com/praveenknair78/AI_Projects/tree/main/RAG_LlamaIndex" class="text-blue-500 hover:underline detail-link">Github repo</a>
+                </div>
+                <div class="project-card bg-white rounded-lg shadow-md p-6">
+                    <h3 class="text-2xl font-semibold text-blue-700 mb-3">Deep Research tool using Agents</h3>
+                    <p class="text-gray-700 mb-4"> An agentic AI application to a deep research on any topic. The user would be provided with a UI to provide his input 
+                        on the topic and then the agents would start work in backend to search the web, do the research, generate the summary and email the repoprt
+                        This uses the OpenAI Agents SDK to create multiple agents that works to complete the task.
+                        </p>
+                    <ul class="list-disc list-inside text-gray-600 mb-4">
+                        <li>Technologies Used: OpenAI Agents SDK framework, Open AI Model: gpt-4o-mini</li>
+                    </ul>
+                     <a href="https://github.com/praveenknair78/AI_Projects/tree/main/DeepResearch_Agents" class="text-blue-500 hover:underline detail-link">Github repo</a>
+                </div>
+
+                <div class="project-card bg-white rounded-lg shadow-md p-6">
+                    <h3 class="text-2xl font-semibold text-blue-700 mb-3">Customer Support Crew - Agents</h3>
+                    <p class="text-gray-700 mb-4"> A multi agentic AI-RAG application to provide a customer support. There are multiple agents running in the backend to provide a
+                        response to the customer queries. The support agent would find the answers for the customer query using the PDF search tool(RAG based) provided and then the 
+                        Quality assurance agent would review the genberated response and ploish it according to the provided standards. This uses CREWAI framework to create an implement agents
+                        </p>
+                    <ul class="list-disc list-inside text-gray-600 mb-4">
+                        <li>Technologies Used: CrewAI framework, Google Gemini Model: gemini-2.0-flash</li>
+                    </ul>
+                     <a href="https://github.com/praveenknair78/AI_Projects/tree/main/customer_support_agent_crew" class="text-blue-500 hover:underline detail-link">Github repo</a>
+                </div>
+
             </div>
             <div class="mt-8 text-center">
                 <a href="#"
@@ -330,12 +380,12 @@
             </p>
             <div class="flex flex-col sm:flex-row items-start sm:items-center gap-4">
                 <p class="text-gray-700 text-lg">
-                    Email: <a href="mailto:your.email@example.com"
-                        class="text-blue-500 hover:underline text-lg">your.email@example.com</a>
+                    Email: <a href="mailto:praveen.mknair@gmail.com"
+                        class="text-blue-500 hover:underline text-lg">praveen.mknair@gmail.com</a>
                 </p>
                 <p class="text-gray-700 text-lg">
-                    LinkedIn: <a href="https://www.linkedin.com/in/yourprofile"
-                        class="text-blue-500 hover:underline text-lg">linkedin.com/in/yourprofile</a>
+                    LinkedIn: <a href="https://linkedin.com/in/praveen-nair-89675278"
+                        class="text-blue-500 hover:underline text-lg">https://linkedin.com/in/praveen-nair-89675278</a>
                 </p>
             </div>
         </section>
